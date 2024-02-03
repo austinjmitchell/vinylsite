@@ -1,0 +1,161 @@
+=<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>What2Spin</title>
+</head>
+<script>
+    function getRandomItemRAP() {
+        var items = [
+            { name: "Utopia - Travis Scott", image: "https://upload.wikimedia.org/wikipedia/en/2/23/Travis_Scott_-_Utopia.png" },
+            { name: "Graduation - Kanye West", image: "https://upload.wikimedia.org/wikipedia/en/7/70/Graduation_%28album%29.jpg" },
+            { name: "The Off Season - J. Cole", image: "https://img.buzzfeed.com/buzzfeed-static/complex/images/kooztyen6ekwytguixn0/tos-cover.jpg?output-format=jpg&output-quality=auto" },
+            { name: "Hollywood's Bleeding - Post Malone", image: "https://i.scdn.co/image/ab67616d0000b2739478c87599550dd73bfa7e02" },
+            { name: "Mr Morale and the Big Steppers - Kendrick Lamar", image: "https://media.pitchfork.com/photos/658d8c80f3c653a4dd7f73df/master/pass/Kendrick-Lamar-Mr-Morale-and-the-Big-Steppers.jpg" },
+            { name: "My Beautiful Dark Twisted Fantasy - Kanye West", image: "https://static.spin.com/files/2010/11/mybeautiful.jpg"},
+            { name: "Igor - Tyler, The Creator", image: "https://i.scdn.co/image/ab67706c0000da840fc22d42c6845acbfbcb3693"},
+            { name: "Flower Boy - Tyler, The Creator", image: "https://m.media-amazon.com/images/I/71Ls2qvxPjL._UF1000,1000_QL80_.jpg"},
+            { name: "Watching Movies with the Sound Off - Mac Miller", image: "https://i5.walmartimages.com/seo/Mac-Miller-WATCHING-MOVIES-WITH-THE-SOUND-OFF-Vinyl_6501dc2f-b1d7-47ef-b4cc-6fb6584064e6.1b8f44e427d1be06055d7cf17426823f.jpeg"},
+            { name: "Beauty Behind the Madness - The Weeknd", image: "https://i.scdn.co/image/ab67616d0000b2737fcead687e99583072cc217b"},
+            { name: "Heros & Villains - Metro Boomin", image: "https://i.scdn.co/image/ab67616d0000b273c4fee55d7b51479627c31f89"},
+            { name: "My Dear Melancholy - The Weeknd", image: "https://upload.wikimedia.org/wikipedia/en/4/4d/MyDearMelancholy_-_album_by_The_Weeknd.jpg"},
+            { name: "Never Enough - Daniel Ceaser", image: "https://images.genius.com/840f8b2841954df45699f0e69dd8f69a.1000x1000x1.png"},
+            { name: "House of Balloons - The Weeknd", image: "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Weeknd_-_House_of_Balloons.png"},
+            { name: "Echoes of Silence - The Weeknd", image: "https://i.scdn.co/image/ab67616d0000b273dfcc909fdcc771e761bcdc9b"},
+            { name: "The Miseducation of Lauryn Hill - Lauryn Hill", image: "https://i.scdn.co/image/ab67616d0000b273e08b1250db5f75643f1508c9"},
+            { name: "Thursday - The Weeknd", image: "https://i.scdn.co/image/ab67616d0000b273892de8bd5ed26541d0f55f4f"},
+            { name: "Starboy - The Weeknd", image: "https://i.scdn.co/image/ab67616d0000b2734718e2b124f79258be7bc452"},
+            { name: "Endless - Frank Ocean", image: "https://i.scdn.co/image/ab67616d0000b273b10c449d6286609f21d21539"},
+            { name: "Rodeo - Travis Scott", image: "https://i.scdn.co/image/ab67616d0000b273715973050587fe3c93033aad"},
+            { name: "Channel Orange - Frank Ocean", image: "https://i.scdn.co/image/ab67616d0000b2737aede4855f6d0d738012e2e5"},
+            { name: "Dawn FM - The Weeknd", image: "https://i.scdn.co/image/ab67616d0000b2734ab2520c2c77a1d66b9ee21d"},
+            { name: "Anti - Rihanna", image: "https://i.scdn.co/image/ab67616d0000b2737b688587a6754481c53f6bb7"},
+            { name: "Beerbongs and Bentleys - Post Malone", image: "https://i.scdn.co/image/ab67616d0000b273b1c4b76e23414c9f20242268"},
+            { name: "Kissland - The Weeknd", image: "https://i.scdn.co/image/ab67616d0000b2730cc6c8a864d2d16a2bc507d4"},
+            { name: "Call Me if you Get Lost - Tyler, The Creator", image: "https://i.scdn.co/image/ab67616d0000b273aa95a399fd30fbb4f6f59fca"},
+            { name: "The Life of Pablo - Kanye West", image: "https://i.scdn.co/image/ab67616d0000b2732a7db835b912dc5014bd37f4"},
+            { name: "Because the Internet - Childish Gambino", image: "https://i.scdn.co/image/ab67616d0000b27326d64b6150aa3d9b6b67d857"},
+            { name: "Awaken, My Love - Childish Gambino", image: "https://i.scdn.co/image/ab67616d0000b2737582716b3666a5235d5af4ea"},
+            { name: "Astroworld - Travis Scott", image: "https://i.scdn.co/image/ab67616d0000b273072e9faef2ef7b6db63834a3"},
+            { name: "Doo-Wops and Hooligans - Bruno Mars", image: "https://i.scdn.co/image/ab67616d0000b273f6b55ca93bd33211227b502b"},
+            { name: "Lemonade - Beyonce", image: "https://i.scdn.co/image/ab67616d0000b27389992f4d7d4ab94937bf9e23"},
+            { name: "An Evening with Silk Sonic - Bruno Mars & Anderson Paak", image: "https://i.scdn.co/image/ab67616d0000b273d0bbd3ea2ec554f17a6603cc"},
+            { name: "To Pimp a Butterfly - Kendrick Lamar", image: "https://i.scdn.co/image/ab67616d0000b273cdb645498cd3d8a2db4d05e1"},
+            { name: "DAMN. - Kendirck Lamar", image: "https://i.scdn.co/image/ab67616d0000b2738b52c6b9bc4e43d873869699"},
+            { name: "Swimming - Mac Miller", image: "https://i.scdn.co/image/ab67616d0000b273175c577a61aa13d4fb4b6534"},
+            { name: "Untitled Unmastered - Kendrick Lamar", image: "https://i.scdn.co/image/ab67616d0000b2738c697f553a46006a5d8886b2"},
+            { name: "KOD - J Cole", image: "https://i.scdn.co/image/ab67616d0000b273cf0f0affd0138a7442f13706"},
+            { name: "The Melodic Blue - Baby Keem", image: "https://i.scdn.co/image/ab67616d0000b2733bcf586e8df6f8ef4a36ca3c"},
+            { name: "Circles - Mac Miller", image: "https://i.scdn.co/image/ab67616d0000b27326b7dd89810cc1a40ada642c"},
+            { name: "Black Panther Soundtrack - Various", image: "https://i.scdn.co/image/ab67616d0000b273c027ad28821777b00dcaa888"},
+            { name: "Scorpion - Drake", image: "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5"},
+            { name: "Gemini Rights - Steve Lacy", image: "https://i.scdn.co/image/ab67616d0000b27368968350c2550e36d96344ee"},
+            { name: "Man on the Moon - Kid Cudi", image: "https://i.scdn.co/image/ab67616d0000b273aab2c3c3f1f3207137d915c9"},
+            { name: "Monster - Future", image: "https://i.scdn.co/image/ab67616d0000b273e2528d35865f3114cfe9a16e"},
+            { name: "Donda - Kanye West", image: "https://i.scdn.co/image/ab67706c0000da843898bbd4c64a8a87ce7e8798"},
+            { name: "808s & Heartbreaks - Kanye West", image: "https://i.scdn.co/image/ab67616d0000b273346d77e155d854735410ed18"},
+            { name: "Kids See Ghosts - Kanye West & Kid Cudi", image: "https://i.scdn.co/image/ab67616d0000b273013c00ee367dd85396f79c82"},
+            { name: "Kauai - Childish Gambino", image: "https://i.scdn.co/image/ab67616d0000b273d98a6832141788d8c355852b"},
+            { name: "4 Your Eyez Only - J Cole", image: "https://i.scdn.co/image/ab67616d0000b273f4ca75192df162f78a24023e"},
+            { name: "American Teen - Khalid", image: "https://i.scdn.co/image/ab67616d0000b273988ede5e1276e758b5f9e577"},
+            { name: "Ye - Kanye West", image: "https://i.scdn.co/image/ab67616d0000b2730cd942c1a864afa4e92d04f2"},
+            { name: "Blond - Frank Ocean", image: "https://i.scdn.co/image/ab67616d0000b273c5649add07ed3720be9d5526"},
+            { name: "After Hours - The Weeknd", image: "https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36"}
+        ];
+        var randomIndex = Math.floor(Math.random() * items.length);
+
+        var randomItem = items[randomIndex];
+
+        document.getElementById("randomItem").textContent = randomItem.name;
+
+        document.getElementById("itemImage").src = randomItem.image;
+        document.getElementById("itemImage").alt = randomItem.name;
+    }
+</script>
+<script>
+function getRandomItemPOP() {
+        var items = [
+            { name: "Folklore - Taylor Swift", image: "https://pbs.twimg.com/media/FB42GPLVEAItNoA.jpg:large" },
+            {name: "CTRL - SZA", image: "https://i.ebayimg.com/images/g/hN0AAOSwn8tg1I6A/s-l1600.jpg"},
+            { name: "Fearless (Taylors Version) - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b273a48964b5d9a3d6968ae3e0de"},
+            {name: "SOS - SZA", image: "https://i.scdn.co/image/ab67616d0000b27370dbc9f47669d120ad874ec1"},
+            { name: "Ultraviolence - Lana Del Rey", image: "https://i.scdn.co/image/ab67616d0000b2736b55c2ee78c5a47393ff8e7a"},
+            { name: "Chip Chrome & The Mono Tones - The Neighborhood", image: "https://i.scdn.co/image/ab67616d0000b2731a721f3757e5b67f87e1acd3"},
+            { name: "Dont Smile at Me - Billie Eilish", image: "https://i.scdn.co/image/ab67616d0000b273a9f6c04ba168640b48aa5795"},
+            { name: "Harrys House - Harry Styles", image: "https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f0"},
+            { name: "Currents - Tame Impala", image: "https://i.scdn.co/image/ab67616d0000b2739e1cfc756886ac782e363d79"},
+            { name: "Fine Line - Harry Styles", image: "https://i.scdn.co/image/ab67616d00001e0277fdcfda6535601aff081b6a"},
+            { name: "Pony - Rex Orange County", image: "https://i.scdn.co/image/ab67616d0000b273733e6d7818eef87d20df86b5"},
+            { name: "Parachutes - Coldplay", image: "https://i.scdn.co/image/ab67616d0000b2733d92b2ad5af9fbc8637425f0"},
+            { name: "Whachito Rico - Boy Pablo", image: "https://i.scdn.co/image/ab67616d0000b2732dec0426c3e27a180d7f894c"},
+            { name: "Guts - Olivia Rodrigo", image: "https://i.scdn.co/image/ab67616d0000b273e85259a1cae29a8d91f2093d"},
+            { name: "1989 (Taylors Version) - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b273904445d70d04eb24d6bb79ac"},
+            { name: "Reputation - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b273da5d5aeeabacacc1263c0f4b"},
+            { name: "The Record - BoyGenius", image: "https://i.scdn.co/image/ab67616d0000b27343fc02bcfa7cd4e6bb66aa22"},
+            { name: "Folkore: Long Pond Studio Sessions - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b273045514e3ed4e1767a7c3ece5"},
+            { name: "I Know I'm Funny haha - Faye Webster", image: "https://i.scdn.co/image/ab67616d0000b273c699d66824a938624c44c2b7"},
+            { name: "Immunity - Clairo", image: "https://i.scdn.co/image/ab67616d0000b27333ccb60f9b2785ef691b2fbc"},
+            { name: "Speak Now (Taylors Version) - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b2730b04da4f224b51ff86e0a481"},
+            { name: "Did You Know That There's A Tunnel Under Ocean Blvd. - Lana Del Rey", image: "https://i.scdn.co/image/ab67616d0000b27359ae8cf65d498afdd5585634"},
+            { name: "AM - Artic Monkeys", image: "https://i.scdn.co/image/ab67616d0000b2734ae1c4c5c45aabe565499163"},
+            { name: "Midnights - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5"},
+            { name: "When We All Fall Asleep, Where Do We Go? - Billie Eilish", image: "https://i.scdn.co/image/ab67616d0000b27350a3147b4edd7701a876c6ce"},
+            { name: "Evermore - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b27333b8541201f1ef38941024be"},
+            { name: "Endless Summer Vacation - Miley Cirus", image: "https://i.scdn.co/image/ab67616d0000b273cd222052a2594be29a6616b5"},
+            { name: "Lust For Life - Lana Del Rey", image: "https://i.scdn.co/image/ab67616d0000b27395e2fd1accb339fa14878190"},
+            { name: "Superache - Conan Gray", image: "https://i.scdn.co/image/ab67616d0000b27360a89b781c62ffe2136e4396"},
+            { name: "Nectar - Joji", image: "https://i.scdn.co/image/ab67616d0000b27353f6fa0d2589c6a7174f4b81"},
+            { name: "Happier Than Ever - Billie Eilish", image: "https://i.scdn.co/image/ab67616d0000b2732a038d3bf875d23e4aeaa84e"},
+            { name: "Harry Styles - Harry Styles", image:"https://i.scdn.co/image/ab67616d0000b2736c619c39c853f8b1d67b7859"},
+            { name: "Diary 001 - Clairo", image: "https://i.scdn.co/image/ab67616d0000b273bf94e27360806b5aa5025f93"},
+            { name: "Sour - Olivia Rodrigo", image: "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a"},
+            { name: "Punisher - Pheobe Bridgers", image: "https://i.scdn.co/image/ab67616d0000b273a91b75c9ef65ed8d760ff600"},
+            { name: "Let Go - Avril Lavigne", image: "https://i.scdn.co/image/ab67616d0000b273f7ec724fbf97a30869d06240"},
+            { name: "Bcus U Will Never B Free - Rex Orange County", image: "https://i.scdn.co/image/ab67616d0000b273fe1854cea6c63b2ba726a299"},
+            { name: "Kid Krow - Conan Gray", image: "https://i.scdn.co/image/ab67616d0000b27388e3cda6d29b2552d4d6bc43"},
+            { name: "Red Moon In Venus - Kali Uchis", image: "https://i.scdn.co/image/ab67616d0000b27381fccd758776d16b87721b17"},
+            { name: "Who Cares? - Rex Orange County", image: "https://i.scdn.co/image/ab67616d0000b2735b656d32ea6b0b9c54c2d2e0"},
+            { name: "Grace - Jeff Buckley", image: "https://i.scdn.co/image/ab67616d0000b2736a760642a56847027428cb61"},
+            { name: "Purple Rain - Prince", image: "https://i.scdn.co/image/ab67616d0000b273d52bfb90ee8dfeda8378b99b"},
+            { name: "Cigarettes After Sex - Cigarettes After Sex", image: "https://i.scdn.co/image/ab67616d0000b2736b701428ed4c6e053902174a"},
+            { name: "If I Could Make It Go Quiet - Girl in Red", image: "https://i.scdn.co/image/ab67616d0000b2731e84dffc6dfde82a3e3a91d2"},
+            { name: "25 - Adele", image: "https://i.scdn.co/image/ab67616d0000b27347ce408fb4926d69da6713c2"},
+            { name: "Lover - Taylor Swift", image: "https://i.scdn.co/image/ab67616d0000b273e787cffec20aa2a396a61647"},
+            { name: "Stranger In The Alps - Pheobe Bridgers", image: "https://i.scdn.co/image/ab67616d0000b27368b90c3b34c3ac22856ddab8"},
+            { name: "La La Land - Various", image: "https://i.scdn.co/image/ab67616d0000b2730bdf4dd39843ad48c5b66bc4"},
+            { name: "This Is Why - Paramore", image: "https://i.scdn.co/image/ab67616d0000b273f633b71861897348253993f4"},
+            { name: "Thriller - Micheal Jackson", image: "https://i.scdn.co/image/ab67616d0000b273de437d960dda1ac0a3586d97"},
+            { name: "The Slow Rush - Tame Impala", image: "https://i.scdn.co/image/ab67616d0000b27358267bd34420a00d5cf83a49"},
+            { name: "Born To Die - Lana Del Rey", image: "https://i.scdn.co/image/ab67616d0000b273a1c37f3fd969287c03482c3b"},
+            { name: "Innerspeaker - Tame Impala", image: "https://i.scdn.co/image/ab67616d0000b273176e82d09ac75d62810f0056"},
+            { name: "Norman Fucking Rockwell - Lana Del Rey", image: "https://i.scdn.co/image/ab67616d0000b273879e9318cb9f4e05ee552ac9"},
+            { name: "1999 - Prince", image: "https://i.scdn.co/image/ab67616d0000b2734117e531f63855d072059d6e"},
+
+            
+        ];
+        var randomIndex = Math.floor(Math.random() * items.length);
+
+        var randomItem = items[randomIndex];
+
+        document.getElementById("randomItem").textContent = randomItem.name;
+
+        document.getElementById("itemImage").src = randomItem.image;
+        document.getElementById("itemImage").alt = randomItem.name;
+    }
+</script>
+<body>
+    <h1>What2Spin</h1>
+    <p>Choose the Genere you want and a random vinyl from that Genre will be displayed to be played!</p>
+    <h2>Genre:</h2>
+    <div class="button-container">
+        <button onclick="getRandomItemRAP()">Hip Hop/R&B</button>
+        <button onclick="getRandomItemPOP()">Pop/Indie</button>
+        <button>Old School</button>
+      </div>
+    <p>Todays Spin:</p>
+    <span id="randomItem"></span>
+    <img id="itemImage" src="" alt="">
+</body>
+</html>
